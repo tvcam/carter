@@ -13,9 +13,9 @@ group :development do
   gem 'money', '3.1.5'
 end
 
-group :test do 
-  gem "debugger"
-  gem "rails", "~> 4.0.0"
+group :test do
+  # gem "debugger"
+  gem "rails", "~> 6.0.0"
   gem "shoulda-matchers"
   gem "factory_girl", "3.6.2"
   gem "state_machine"
