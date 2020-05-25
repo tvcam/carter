@@ -7,12 +7,12 @@ module Carter
       
       def has_cart(*args)
         has_cart_options = args.extract_options!
-        before_filter :load_cart, has_cart_options.slice(:only, :except)
+        before_action :load_cart, has_cart_options.slice(:only, :except)
         include InstanceMethods
       end
 
       def has_cart_for_checkout(*args)
-        before_filter :load_cart_for_checkout, args.extract_options!.slice(:only, :except)
+        before_action :load_cart_for_checkout, args.extract_options!.slice(:only, :except)
         include InstanceMethods
       end
 

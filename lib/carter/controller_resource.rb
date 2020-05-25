@@ -3,10 +3,10 @@ module Carter
   # This class is used internally, so you do not need to call methods directly on it.
   
   class ControllerResource # :nodoc:
-    def self.add_before_filter(controller_class, method, *args)
+    def self.add_before_action(controller_class, method, *args)
       options = args.extract_options!
       resource_name = args.first
-      controller_class.before_filter(options.slice(:only, :except)) do |controller|
+      controller_class.before_action(options.slice(:only, :except)) do |controller|
         ControllerResource.new(controller, resource_name, options.except(:only, :except)).send(method)
       end
     end

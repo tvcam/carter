@@ -1,6 +1,6 @@
 class CartItemsController < ApplicationController
   
-  before_filter :find_cart_item, :only => [:update, :destroy]
+  before_action :find_cart_item, :only => [:update, :destroy]
   
   def create
     persist_cart if @cart.new_record?
