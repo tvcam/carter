@@ -1,12 +1,12 @@
 class Cart < ActiveRecord::Base
-  belongs_to :shopper, :polymorphic => true # for extra persistance
+  belongs_to :shopper, :polymorphic => true, optional: true # for extra persistance
   has_many :cart_items, :dependent => :destroy
 
   include Carter::Cart
   extend Carter::ActiveRecord::Extensions
 
   attr_accessor :gateway_response
-  
+
   def add_item(cartable, quantity = 1, owner=nil)
     existing_cart_item = cart_item_for_cartable_and_owner(cartable, owner)
     Cart.transaction do
@@ -21,14 +21,14 @@ class Cart < ActiveRecord::Base
       end
     end
   end
-  
+
   # TODO cache this value
   def total
     cart_items.reload.map.sum(&:total_price).to_money
   end
-  
+
   def empty?
     cart_items.blank?
   end
-  
+
 end
